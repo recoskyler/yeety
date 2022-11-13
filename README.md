@@ -1,6 +1,6 @@
 # Yeety
 
-Yeelight (Xiaomi Mi Light) RGB ambience controller for linux.
+Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux.
 
 ## Status
 
