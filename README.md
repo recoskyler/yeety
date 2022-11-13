@@ -1,10 +1,10 @@
 # Yeety
 
-Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux.
+Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by taking a screenshot (of a specified monitor) 2-3 times per second, and setting the light bulb's color to the dominant color on the screenshot. You can enable rate limiting so that your client does not get blocked.
 
 ## Status
 
-**IN DEVELOPMENT** - Maybe you can use it after some tweaks tho.
+**STABLE, NO SOLID FUTURE** - You can use it I guess.
 
 ## Features
 
@@ -41,5 +41,13 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux.
     ```bash
     ./yeety.py
     ```
+
+    **or run it in the background using:**
+
+    ```bash
+    nohup ./yeety.py &
+    ```
+
+    `nohup COMMAND &` *allows the command to detach and run in the background, so that you can close the terminal.*
 
 ## [License](LICENSE)
