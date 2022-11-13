@@ -8,15 +8,23 @@ import math
 from colorthief import ColorThief
 
 
-prev_dominatrix_color = (0, 0, 0)  ##! DO NOT CHANGE
-last_refresh = 0                   ##! DO NOT CHANGE
-screenshot_path = "/tmp/yeet/monitor.png"
-monitor = 2
-max_per_second = 55
-light_ip = "192.168.1.41"
-effect = "smooth"
-auto_on = True
-duration = 250
+#*################################################################################################################################
+#* SET UP THE VARIABLES BELOW
+#*################################################################################################################################
+
+screenshot_path = "/tmp/yeet/monitor.png" ##! REQUIRED
+monitor = 2                               ##! REQUIRED (min 0)
+max_per_second = 55                       ##! REQUIRED (min 1)
+light_ip = "192.168.1.41"                 ##? Optional
+effect = "smooth"                         ##* REQUIRED-ish ("sudden"/"smooth", can be None, will default to "smooth")
+auto_on = True                            ##* REQUIRED-ish (can be None, will default to False)
+duration = 250                            ##* REQUIRED-ish (min 30, can be None, will default to 300ms)
+
+#*################################################################################################################################
+
+
+prev_dominatrix_color = (0, 0, 0)         ##! DO NOT CHANGE
+last_refresh = 0                          ##! DO NOT CHANGE
 
 
 def colorfulness(color):
