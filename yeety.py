@@ -1,12 +1,8 @@
 #!/usr/bin/python3
 
 import os
-import math
 import time
-
 import yeelight as yl
-import colorsys as cs
-
 from colorthief import ColorThief
 
 
@@ -15,13 +11,16 @@ from colorthief import ColorThief
 #*#############################################################################
 
 ##! REQUIRED
-screenshot_path = "/tmp/yeet/monitor.png"
+screenshot_path = "/tmp/yeet/screenshot.png"
 
 ##! REQUIRED (min 0)
 monitor = 2
 
 ##! REQUIRED (min 1)
 max_per_second = 55
+
+##! REQUIRED (min 1, max 10. 1 Highest quality, takes the longest time...)
+quality = 10
 
 ##? Optional
 light_ip = "192.168.1.41"
@@ -33,26 +32,13 @@ effect = "smooth"
 auto_on = True
 
 ##* REQUIRED-ish (min 30, can be None, will default to 300ms)
-duration = 300
+duration = 500
 
 #*#############################################################################
 
 
 prev_dominatrix_color = (0, 0, 0)         ##! DO NOT CHANGE
 last_refresh = 0                          ##! DO NOT CHANGE
-
-
-def colorfulness(color):
-    """
-    It converts the RGB color to HSV, then returns the square root of the sum of the squares of the
-    saturation and value components
-
-    :param color: The color to be analyzed
-    :return: The colorfulness of the color.
-    """
-    h, s, v = cs.rgb_to_hsv(color[0], color[1], color[2])
-
-    return math.sqrt(pow(s, 2) + pow(v, 2))
 
 
 def refresh(bulb):
@@ -68,7 +54,7 @@ def refresh(bulb):
     os.system(f"mss -o {screenshot_path} -m {monitor} -q")
 
     color_thief = ColorThief(screenshot_path)
-    dominatrix_color = color_thief.get_color()
+    dominatrix_color = color_thief.get_color(quality=quality)
 
     if dominatrix_color != prev_dominatrix_color:
         print("refreshing...")
