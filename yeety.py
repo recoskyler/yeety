@@ -1,26 +1,41 @@
 #!/usr/bin/python3
 
-import yeelight as yl
 import os
-import time
-import colorsys as cs
 import math
+import time
+
+import yeelight as yl
+import colorsys as cs
+
 from colorthief import ColorThief
 
 
-#*################################################################################################################################
+#*#############################################################################
 #* SET UP THE VARIABLES BELOW
-#*################################################################################################################################
+#*#############################################################################
 
-screenshot_path = "/tmp/yeet/monitor.png" ##! REQUIRED
-monitor = 2                               ##! REQUIRED (min 0)
-max_per_second = 55                       ##! REQUIRED (min 1)
-light_ip = "192.168.1.41"                 ##? Optional
-effect = "smooth"                         ##* REQUIRED-ish ("sudden"/"smooth", can be None, will default to "smooth")
-auto_on = True                            ##* REQUIRED-ish (can be None, will default to False)
-duration = 250                            ##* REQUIRED-ish (min 30, can be None, will default to 300ms)
+##! REQUIRED
+screenshot_path = "/tmp/yeet/monitor.png"
 
-#*################################################################################################################################
+##! REQUIRED (min 0)
+monitor = 2
+
+##! REQUIRED (min 1)
+max_per_second = 55
+
+##? Optional
+light_ip = "192.168.1.41"
+
+##* REQUIRED-ish ("sudden"/"smooth", can be None, will default to "smooth")
+effect = "smooth"
+
+##* REQUIRED-ish (can be None, will default to False)
+auto_on = True
+
+##* REQUIRED-ish (min 30, can be None, will default to 300ms)
+duration = 300
+
+#*#############################################################################
 
 
 prev_dominatrix_color = (0, 0, 0)         ##! DO NOT CHANGE
