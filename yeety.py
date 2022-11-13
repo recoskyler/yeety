@@ -77,29 +77,38 @@ def main():
     """
     global light_ip
 
-    if light_ip == None:
-        bulbs = yl.discover_bulbs()
+    try:
+        if light_ip == None:
+            bulbs = yl.discover_bulbs()
 
-        if len(bulbs) == 0 and light_ip == None:
-            exit("No bulbs found");
+            if len(bulbs) == 0 and light_ip == None:
+                exit("No bulbs found");
 
-        light_ip = bulbs[0]["ip"]
+            light_ip = bulbs[0]["ip"]
 
-    print(f"Light IP: {light_ip}")
+        print(f"Light IP: {light_ip}")
 
-    bulb = yl.Bulb(light_ip, effect=effect, auto_on=auto_on, duration=duration)
+        bulb = yl.Bulb(light_ip, effect=effect, auto_on=auto_on, duration=duration)
 
-    while True:
-        refresh(bulb)
+        while True:
+            try:
+                refresh(bulb)
+            except:
+                print("An exception occurred while refreshing")
+    except:
+        print('An exception occurred')
 
 
 if __name__ == "__main__":
     print("Checking for screenshot folder...")
     dirname = os.path.dirname(screenshot_path)
 
-    if not os.path.exists(dirname):
-        print("Creating screenshot folder...")
-        os.mkdir(dirname)
-        print("Created screenshot folder")
+    try:
+        if not os.path.exists(dirname):
+            print("Creating screenshot folder...")
+            os.mkdir(dirname)
+            print("Created screenshot folder")
 
-    main()
+        main()
+    except:
+        print("Failed to check for/create temp screenshot folder")
