@@ -11,7 +11,7 @@ from colorthief import ColorThief
 #*#############################################################################
 
 ##! REQUIRED
-screenshot_path = "/tmp/yeet/screenshot.png"
+screenshot_path = "/tmp/yeety/screenshot.png"
 
 ##! REQUIRED (min 0)
 monitor = 2

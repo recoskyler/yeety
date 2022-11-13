@@ -39,7 +39,50 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by takin
     pip3 install -U mss colorthief yeelight
     ```
 
-3. Set the necessary vars in the [yeety.py](yeety.py) file.
+3. Set the necessary vars in the [yeety.py](yeety.py) file:
+
+    ```bash
+    nano ./yeety.py
+    ```
+
+    ```py
+    # ./yeety.py
+
+    # ...
+
+    #*#############################################################################
+    #* SET UP THE VARIABLES BELOW
+    #*#############################################################################
+
+    ##! REQUIRED
+    screenshot_path = "/tmp/yeety/screenshot.png"
+
+    ##! REQUIRED (min 0)
+    monitor = 2
+
+    ##! REQUIRED (min 1)
+    max_per_second = 55
+
+    ##! REQUIRED (min 1, max 10. 1 Highest quality, takes the longest time...)
+    quality = 10
+
+    ##? Optional
+    light_ip = "192.168.1.23"
+
+    ##* REQUIRED-ish ("sudden"/"smooth", can be None, will default to "smooth")
+    effect = "smooth"
+
+    ##* REQUIRED-ish (can be None, will default to False)
+    auto_on = True
+
+    ##* REQUIRED-ish (min 30, can be None, will default to 300ms)
+    duration = 300
+
+    #*#############################################################################
+
+    # ...
+    ```
+
 4. Run the file using the command:
 
     ```bash
