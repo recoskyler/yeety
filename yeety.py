@@ -2,6 +2,8 @@
 
 import os
 import time
+import signal
+import readchar
 import yeelight as yl
 from colorthief import ColorThief
 
@@ -39,6 +41,25 @@ duration = 500
 
 prev_dominatrix_color = (0, 0, 0)         ##! DO NOT CHANGE
 last_refresh = 0                          ##! DO NOT CHANGE
+running = False                           ##! DO NOT CHANGE
+
+# Thanks to Gabor Szabo
+# https://code-maven.com/catch-control-c-in-python
+
+def handler(signum, frame):
+    global running
+
+    msg = "\n\nCtrl-c was pressed. Do you really want to exit? y/n "
+    print(msg, end="", flush=True)
+
+    res = readchar.readchar()
+
+    if res == 'y':
+        running = False
+    else:
+        print("", end="\r", flush=True)
+        print(" " * len(msg), end="", flush=True) # clear the printed line
+        print("    ", end="\r", flush=True)
 
 
 def refresh(bulb):
@@ -76,6 +97,7 @@ def main():
     second
     """
     global light_ip
+    global running
 
     try:
         if light_ip == None:
@@ -90,7 +112,9 @@ def main():
 
         bulb = yl.Bulb(light_ip, effect=effect, auto_on=auto_on, duration=duration)
 
-        while True:
+        running = True
+
+        while running:
             try:
                 refresh(bulb)
             except:
@@ -102,6 +126,8 @@ def main():
 if __name__ == "__main__":
     print("Checking for screenshot folder...")
     dirname = os.path.dirname(screenshot_path)
+
+    signal.signal(signal.SIGINT, handler)
 
     try:
         if not os.path.exists(dirname):
