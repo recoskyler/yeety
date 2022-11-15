@@ -21,6 +21,7 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by takin
 - os
 - mss (for screenshots)
 - time
+- readchar
 - yeelight
 - colorthief
 - Dev mode/LAN control enabled for the light bulb
@@ -36,7 +37,7 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by takin
 2. Install the required packages:
 
     ```bash
-    pip3 install -U mss colorthief yeelight
+    pip3 install -U mss colorthief yeelight readchar
     ```
 
 3. Set the necessary vars in the [yeety.py](yeety.py) file:
