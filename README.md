@@ -8,9 +8,9 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by takin
 
 ## Features
 
-- 🖥 **Single** monitor support
-- 💡 **Single** RGB bulb support
-- 🐌 Blazing *slow* response time
+- 🖥 **Single Monitor** support
+- 💡 **Single RGB Bulb** support
+- 🐌 **Blazing *Slow*** response time
 - It works tho :D
 
 ## Requirements
@@ -25,7 +25,7 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by takin
 - colorthief
 - Dev mode/LAN control enabled for the light bulb
 
-## Setup
+## Setup & Usage
 
 1. Clone this repository:
 
@@ -50,9 +50,9 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by takin
 
     # ...
 
-    #*#############################################################################
+    #*###########################
     #* SET UP THE VARIABLES BELOW
-    #*#############################################################################
+    #*###########################
 
     ##! REQUIRED
     screenshot_path = "/tmp/yeety/screenshot.png"
@@ -78,7 +78,7 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by takin
     ##* REQUIRED-ish (min 30, can be None, will default to 300ms)
     duration = 300
 
-    #*#############################################################################
+    #*###########################
 
     # ...
     ```
@@ -89,12 +89,40 @@ Yeelight (Xiaomi Mi Light) RGB ambience controller for GNU/Linux. Works by takin
     ./yeety.py
     ```
 
-    **or run it in the background using:**
+    Press <kbd>Ctrl</kbd>+<kbd>c</kbd> to stop the program
+
+## Running in the background
+
+```bash
+nohup ./yeety.py &
+```
+
+`nohup COMMAND &` *allows the command to detach and run in the background, so that you can close the terminal.*
+
+### Stopping the background app
+
+1. Type the following command in the terminal:
 
     ```bash
-    nohup ./yeety.py &
+    ❯ ps -x | grep yeety.py
     ```
 
-    `nohup COMMAND &` *allows the command to detach and run in the background, so that you can close the terminal.*
+2. Take a look at the command's output. If you see a line similar to `350017 ?        RN     4:47 /usr/bin/python3 ./yeety/yeety.py`. If you don't see a line similar to this one, then the background app is not running. The following is an example of a full output:
+
+    ```bash
+    350017 ?        RN     4:47 /usr/bin/python3 ./yeety/yeety.py
+    352201 pts/1    S+     0:00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn --exclude-dir=.idea --exclude-dir=.tox yeety.py
+    ```
+
+    You should ignore the part with `grep --color=auto .....`
+
+    The thing we are interested in is the first number on the interesting line: `350017`, which will be different in your case. Copy that number to your clipboard.
+
+3. Type the following command to exterminate the background app:
+
+    ```bash
+    kill 350017
+    kill THE_NUMBER_YOU_JUST_COPIED
+    ```
 
 ## [License](LICENSE)
